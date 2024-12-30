@@ -1,0 +1,1 @@
+# hnnutizdar.cz
