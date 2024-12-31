@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hnutí ZDAR - Zdraví, Demokracie a Rozvoj</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #00ff00;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            position: relative;
+            animation: backgroundAnimation 60s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        header {
+            background: url('https://source.unsplash.com/1600x900/?space,neon') no-repeat center center;
+            background-size: cover;
+            padding: 60px;
+            text-align: center;
+            color: #ffcc00;
+            border-bottom: 10px dashed #ff00ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), rgba(0,0,0,0) 70%);
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .square {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #fff;
+            margin: 5px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            transform: rotate(-10deg);
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .square::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+            opacity: 0.5;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+        }
+
+        .square:hover::before {
+            opacity: 1;
+        }
+
+        .square.green { background-color: turquoise; }
+        .square.blue { background-color: #0000ff; }
+        .square.red { background-color: #ff0000; }
+        .square.white { background-color: #ffffff; color: black; }
+
+        header h1 {
+            font-size: 5em;
+            margin: 0;
+            text-shadow: 5px 5px 10px rgba(255, 0, 255, 0.7);
+            transform: rotate(-5deg);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        header h1:hover {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        header p {
+            font-size: 1.8em;
+            margin-top: 10px;
+            text-shadow: 3px 3px 8px rgba(255, 255, 0, 0.7);
+            font-style: italic;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .content {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            border: 5px double #00ff00;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transform: rotate(4.2deg);
+            display: none;
+            opacity: 0;
+            transition: opacity 1s, transform 1s, background-color 1s;
+        }
+
+        .content.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1.1);
+            background-color: #000;
+            animation: popin 1s ease-in-out;
+        }
+
+        @keyframes popin {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .content h2 {
+            font-size: 3.5em;
+            color: #ff0000;
+            text-shadow: 4px 4px 10px rgba(255, 255, 0, 0.9);
+            border-bottom: 3px dotted #ff00ff;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            animation: bounce 1s infinite;
+        }
+
+        .content p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #ff00ff;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px dashed #ffff00;
+            padding: 15px;
+            border-radius: 15px;
+            animation: shake 4.5s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+
+        footer {
+            background: #000;
+            color: #ffcc00;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            border-top: 5px solid #ff00ff;
+            position: relative;
+            z-index: 5;
+        }
+
+        a {
+            color: #ffcc00;
+            font-weight: bold;
+            text-decoration: underline;
+            background: rgba(255, 0, 255, 0.3);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            color: #00ff00;
+            text-decoration: none;
+            background: rgba(0, 255, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌌 Hnutí 🌌</h1>
+        <div class="container">
+            <div class="square green" data-category="zdravi">Z</div>
+            <div class="square blue" data-category="demokracie">D</div>
+            <div class="square red" data-category="a">A</div>
+            <div class="square white" data-category="rozvoj">R</div>
+        </div>
+        <p>🛸 Představujeme vám revoluční vizi</p>
+        <p> Zdraví, Demokracie a Rozvoj jako odpověď na současnou krizi! 🛸</p>
+    </header>
+    <section id="content">
+        <div class="content" id="uvod">
+            <h2>🌟 Vítejte v Revoluční Éře ZDAR! 🌟</h2>
+            <p>🌌 **Hnutí ZDAR** je víc než jen slova. Je to výzva proti nečinnosti vlád, která ohrožuje naše základní potřeby. Náš systém není připraven čelit výzvám současnosti – je čas na novou revoluční změnu. **Využíváme vědecké studie a uznávané filosofické svitky**, abychom vytvořili plán pro radikální transformaci. Je čas přetvořit naši společnost podle nového, odvážného myšlení. 🌠</p>
+            <p>💫 **Nečekejte na změnu!** Každý okamžik nečinnosti nás odklání od našeho potenciálu. Připojte se k nám a buďte součástí revoluce, která **změní svět**. Klikněte na písmena níže a objevte, jak můžeme společně překonat krizi a vytvářet lepší budoucnost!</p>
+        </div>
+        <div class="content" id="zdravi">
+            <h2>🌟 Zdraví - Klíč k Nové Éře! 🌟</h2>
+            <p>🌿 **Zdraví** není pouze o fyzické kondici. Je to základní kámen naší existence, který byl zanedbán vládami a korporacemi. Vědecké studie potvrzují, že přechod na holistický přístup ke zdraví je nezbytný. Naše hnutí vám nabízí **revoluční přístup** k vaší vitalitě, který zahrnuje nejen zdravou stravu a pohyb, ale také mentální a emocionální zdraví. **Začněte dnes a objevte nové možnosti!** 🌿</p>
+        </div>
+        <div class="content" id="demokracie">
+            <h2>📢 Demokracie - Vaše Práva na Dosah! 📢</h2>
+            <p>📉 Naše současná vláda neplní svou roli, což ohrožuje naše základní práva. Vědecké a filozofické analýzy ukazují, že skutečná demokracie vyžaduje aktivní účast a odhodlání. **Vždy jste věřili, že váš hlas má cenu** – připojte se k revolučnímu hnutí, které vám dává šanci skutečně ovlivnit svou budoucnost. **Vytvářejme demokracii, kde každý hlas má moc!** 📢</p>
+        </div>
+        <div class="content" id="a">
+            <h2>🔗 A - Síla Spojení! 🔗</h2>
+            <p>🌐 **A** není jen písmeno. Je to symbol jednoty, síly a revoluce. **Vědecké studie** potvrzují, že spojením našich sil můžeme dosáhnout nevídaných výsledků. **Vždy jste věděli, že ve spojení je síla** – využijte tento princip k osobnímu růstu a přispějte k vytváření nového světa, kde spolupráce překonává všechny překážky. **Pochopte sílu této spojky a zapojte se do revoluční změny!** 🔗</p>
+        </div>
+        <div class="content" id="rozvoj">
+            <h2>🌍 Rozvoj - Cesta k Lepší Budoucnosti! 🌍</h2>
+            <p>🚀 **Rozvoj** je klíčem k lepší budoucnosti. Naše moderní komunitní platforma, otevřená na **Discordu**, vám umožní sdílet nápady a strategie na základě **vědeckých a filozofických studií**. **Nečekejte, až vás vláda potlačí** – připojte se k naší komunitě a přispějte k inovacím, které změní svět. Každý váš krok je krokem k spravedlivější a prosperující společnosti! 🚀</p>
+        </div>
+        <div class="content" id="e-government">
+            <h2>🌐 E-Government - Moderní Správa a Transparentnost! 🌐</h2>
+            <p>💻 **E-Government** představuje modernizaci veřejné správy s cílem zlepšit efektivitu a dostupnost služeb. **Podporujeme digitalizaci a implementaci moderních technologií**, které usnadní občanům přístup k veřejným službám a zvýší transparentnost státní správy. **Zúčastněte se a pomozte nám vytvořit efektivnější a transparentnější vládní systém!** 💻</p>
+        </div>
+        <div class="content" id="rovnost-pohlavi">
+            <h2>🚺 Rovnost Pohlaví - Spravedlnost pro Všechny! 🚺</h2>
+            <p>⚖️ **Rovnost pohlaví** je klíčová pro vytvoření spravedlivé společnosti. Ženy by měly mít možnost volit partnery na základě vzájemného porozumění a respektu, a role matky by měla být ceněna a podporována. **Věříme v rovné příležitosti a spravedlnost pro všechny**, bez ohledu na pohlaví. **Připojte se k nám v boji za rovnost a spravedlnost!** ⚖️</p>
+        </div>
+        <div class="content" id="socialni-podnikani">
+            <h2>🌱 Sociální Podnikání - Inovace pro Společnost! 🌱</h2>
+            <p>🌟 **Sociální podnikání** je klíčovým nástrojem pro řešení společenských problémů prostřednictvím podnikatelských aktivit. **Podporujeme projekty**, které přinášejí pozitivní společenské změny a podporují udržitelnost. **Zapojte se do sociálních podniků a přispějte k inovacím, které dělají svět lepším místem!** 🌟</p>
+        </div>
+        <div class="content" id="digitalni-participace">
+            <h2>📲 Digitální Participace - Zapojte se Online! 📲</h2>
+            <p>🖥️ **Digitální participace** umožňuje občanům aktivně se podílet na rozhodování a správě společnosti prostřednictvím digitálních platforem. **Podporujeme přístupnost a inovace**, které usnadní vaši účast na veřejném dění. **Připojte se k nám a využijte moderní technologie k aktivnímu zapojení do společnosti!** 🖥️</p>
+        </div>
+        <div class="content" id="open-data">
+            <h2>📊 Open Data - Transparentnost a Inovace! 📊</h2>
+            <p>📈 **Open Data** je zásadní pro transparentnost a inovace. Otevřený přístup k veřejným datům podporuje lepší rozhodování a odpovědnost. **Připojte se k nám a objevte, jak otevřená data mohou přispět k lepší společnosti!** 📊</p>
+            <ul>
+                <li>Podpora otevřeného přístupu k veřejným datům</li>
+                <li>Zvýšení transparentnosti a odpovědnosti</li>
+                <li>Podpora inovací založených na datech</li>
+            </ul>
+        </div>
+        <div class="content" id="podpora-mikromobility">
+            <h2>🚲 Podpora Mikro-mobility - Udržitelné Dopravní Řešení! 🚲</h2>
+            <p>🌍 **Podpora mikro-mobility** zahrnuje propagaci udržitelných a efektivních dopravních možností, jako jsou elektrické koloběžky a bicykly. **Podporujeme projekty, které zlepšují městskou mobilitu** a snižují ekologickou stopu. **Zapojte se do naší iniciativy a přispějte k udržitelnému rozvoji měst!** 🌍</p>
+        </div>
+        <div class="content" id="sustainable-urban-mobility">
+            <h2>🚉 Sustainable Urban Mobility - Budoucnost Městské Dopravy! 🚉</h2>
+            <p>🚀 **Udržitelná městská mobilita** zahrnuje plánování a implementaci dopravních systémů, které jsou ekologické a efektivní. **Podporujeme inovace a projekty**, které zajišťují udržitelnost a zlepšují kvalitu života ve městech. **Připojte se k nám a pomozte nám vytvořit udržitelnější městskou dopravu!** 🚀</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Hnutí ZDAR. Všechna práva vyhrazena. <a href="#">Kontaktujte nás pro více fantastických informací!</a></p>
+    </footer>
+    <script>
+        document.querySelectorAll('.square').forEach(square => {
+            square.addEventListener('click', () => {
+                const category = square.getAttribute('data-category');
+                document.querySelectorAll('.content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                const activeContent = document.getElementById(category);
+                if (activeContent) {
+                    activeContent.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelector('header h1').addEventListener('click', () => {
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
